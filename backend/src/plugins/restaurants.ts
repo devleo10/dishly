@@ -51,3 +51,4 @@ export const restaurantsPlugin = new Elysia({ prefix: '/restaurants' })
     };
   });
 
+
