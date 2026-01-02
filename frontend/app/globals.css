@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #212529;
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #0a9396 0%, #005f73 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0a9396;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #005f73;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #0a9396;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(10, 147, 150, 0.2);
+  color: inherit;
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Better focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #0a9396;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Improved line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
