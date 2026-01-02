@@ -59,3 +59,4 @@ export const paymentMethods = pgTable('payment_methods', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+
