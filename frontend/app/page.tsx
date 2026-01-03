@@ -11,28 +11,28 @@ export default function Home() {
       icon: Utensils,
       title: 'Browse Restaurants',
       description: 'Discover amazing restaurants and their delicious menus',
-      gradient: 'from-[#0a9396] to-[#005f73]',
+      gradient: 'from-primary-500 to-primary-700',
       bgColor: 'bg-primary-50',
     },
     {
       icon: ShoppingCart,
       title: 'Easy Ordering',
       description: 'Add items to cart and checkout with ease',
-      gradient: 'from-[#ffb703] to-[#fb8500]',
+      gradient: 'from-secondary-500 to-secondary-700',
       bgColor: 'bg-secondary-50',
     },
     {
       icon: Shield,
       title: 'Secure Payments',
       description: 'Safe and secure payment processing',
-      gradient: 'from-[#22c55e] to-[#16a34a]',
+      gradient: 'from-success-500 to-success-700',
       bgColor: 'bg-success-50',
     },
     {
       icon: Zap,
       title: 'Fast Delivery',
       description: 'Quick order processing and delivery',
-      gradient: 'from-[#e63946] to-[#f77f00]',
+      gradient: 'from-accent-500 to-accent-700',
       bgColor: 'bg-accent-50',
     },
   ];
@@ -208,12 +208,6 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
-            const gradientMap: Record<string, string> = {
-              'from-[#0a9396] to-[#005f73]': 'linear-gradient(135deg, #0a9396 0%, #005f73 100%)',
-              'from-[#ffb703] to-[#fb8500]': 'linear-gradient(135deg, #ffb703 0%, #fb8500 100%)',
-              'from-[#22c55e] to-[#16a34a]': 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-              'from-[#e63946] to-[#f77f00]': 'linear-gradient(135deg, #e63946 0%, #f77f00 100%)',
-            };
             return (
               <motion.div
                 key={index}
@@ -226,8 +220,7 @@ export default function Home() {
               >
                 <div className={`${feature.bgColor} rounded-2xl p-6 md:p-8 text-center h-full border border-neutral-100/50 hover:shadow-large transition-all duration-300 hover:border-neutral-200`}>
                   <div 
-                    className="inline-flex items-center justify-center w-16 h-16 rounded-2xl text-white mb-5 shadow-medium group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: gradientMap[feature.gradient] }}
+                    className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} text-white mb-5 shadow-medium group-hover:scale-110 transition-transform duration-300`}
                   >
                     <IconComponent className="h-7 w-7" />
                   </div>
