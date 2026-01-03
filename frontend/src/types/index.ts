@@ -65,4 +65,3 @@ export interface CartItem {
   restaurantId: number;
 }
 
-
