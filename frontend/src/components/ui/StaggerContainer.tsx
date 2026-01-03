@@ -1,41 +1,41 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+import { cn } from '@/lib/utils';
 
 interface StaggerContainerProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
 }
 
 export function StaggerContainer({ children, className }: StaggerContainerProps) {
   return (
     <motion.div
-      variants={container}
+      className={cn(className)}
       initial="hidden"
-      animate="show"
-      className={className}
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.1,
+          },
+        },
+      }}
     >
       {children}
     </motion.div>
   );
 }
 
-export const staggerItem = item;
-
-
+export const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+    },
+  },
+};
