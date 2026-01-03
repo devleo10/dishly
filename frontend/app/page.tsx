@@ -38,14 +38,14 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-neutral-50 via-white to-primary-50/30 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/30 overflow-hidden">
       {/* Hero Section */}
       <div className="relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-linear-to-br from-primary-200/40 to-primary-300/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 -left-40 w-80 h-80 bg-linear-to-br from-secondary-200/30 to-secondary-300/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-linear-to-br from-accent-200/20 to-accent-300/10 rounded-full blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-primary-200/40 to-primary-300/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 -left-40 w-80 h-80 bg-gradient-to-br from-secondary-200/30 to-secondary-300/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-br from-accent-200/20 to-accent-300/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 py-20 md:py-32 lg:py-40 relative z-10">

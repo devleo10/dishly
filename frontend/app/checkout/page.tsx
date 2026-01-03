@@ -83,7 +83,7 @@ export default function CheckoutPage() {
   if (order) {
     return (
       <RoleGuard allowedRoles={['admin', 'manager']}>
-        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-success-50 via-white to-primary-50/20 p-4">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-success-50 via-white to-primary-50/20 p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -94,7 +94,7 @@ export default function CheckoutPage() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-20 h-20 bg-linear-to-br from-success-400 to-success-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-soft"
+                className="w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-soft"
               >
                 <CheckCircle2 className="h-12 w-12 text-white" />
               </motion.div>
@@ -116,7 +116,7 @@ export default function CheckoutPage() {
 
   return (
     <RoleGuard allowedRoles={['admin', 'manager']}>
-      <div className="min-h-screen bg-linear-to-br from-neutral-50 via-white to-primary-50/20">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/20">
         <div className="container mx-auto px-4 py-12 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: -10 }}

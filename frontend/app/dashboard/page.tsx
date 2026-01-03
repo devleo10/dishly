@@ -48,7 +48,7 @@ export default function DashboardPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-linear-to-br from-neutral-50 via-white to-primary-50/20">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/20">
         <div className="container mx-auto px-4 py-12">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -72,7 +72,7 @@ export default function DashboardPage() {
                 <motion.div key={index} variants={staggerItem}>
                   <Link href={card.href} className="group block h-full">
                     <Card className="h-full group-hover:shadow-medium transition-all duration-300">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br ${card.gradient} text-white mb-4 shadow-soft group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${card.gradient} text-white mb-4 shadow-soft group-hover:scale-110 transition-transform duration-300`}>
                         {card.icon}
                       </div>
                       <h3 className="text-2xl font-semibold mb-2 text-neutral-800 group-hover:text-primary-600 transition-colors">
