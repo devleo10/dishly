@@ -62,7 +62,7 @@ export default function RestaurantDetailPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-linear-to-br from-neutral-50 via-white to-primary-50/20">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/20">
         <div className="container mx-auto px-4 py-12">
           {restaurant && (
             <motion.div
@@ -116,7 +116,7 @@ export default function RestaurantDetailPage() {
                 {menuItems.map((item) => (
                   <motion.div key={item.id} variants={staggerItem}>
                     <Card className="h-full flex flex-col hover:shadow-medium transition-all duration-300">
-                      <div className="h-40 bg-linear-to-br from-secondary-300 to-secondary-500 rounded-xl mb-4 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                      <div className="h-40 bg-gradient-to-br from-secondary-300 to-secondary-500 rounded-xl mb-4 flex items-center justify-center hover:scale-105 transition-transform duration-300">
                         <span className="text-5xl">🍕</span>
                       </div>
                       <div className="grow">

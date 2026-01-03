@@ -98,7 +98,7 @@ export default function PaymentMethodsPage() {
 
   return (
     <RoleGuard allowedRoles={['admin']}>
-      <div className="min-h-screen bg-linear-to-br from-neutral-50 via-white to-primary-50/20">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/20">
         <div className="container mx-auto px-4 py-12">
           <div className="flex justify-between items-center mb-8">
             <motion.div
@@ -234,7 +234,7 @@ export default function PaymentMethodsPage() {
               animate={{ opacity: 1, scale: 1 }}
               className="flex flex-col items-center justify-center py-20"
             >
-              <div className="w-32 h-32 bg-linear-to-br from-primary-200 to-primary-400 rounded-full flex items-center justify-center mb-6 shadow-soft">
+              <div className="w-32 h-32 bg-gradient-to-br from-primary-200 to-primary-400 rounded-full flex items-center justify-center mb-6 shadow-soft">
                 <CreditCard className="h-16 w-16 text-white" />
               </div>
               <h2 className="text-2xl font-semibold mb-2 text-neutral-800">No payment methods</h2>

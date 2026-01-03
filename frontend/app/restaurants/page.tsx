@@ -35,7 +35,7 @@ export default function RestaurantsPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-linear-to-br from-neutral-50 via-white to-primary-50/20">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/20">
         <div className="container mx-auto px-4 py-12">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -76,7 +76,7 @@ export default function RestaurantsPage() {
                 <motion.div key={restaurant.id} variants={staggerItem}>
                   <Link href={`/restaurants/${restaurant.id}`} className="group block h-full">
                     <Card className="h-full group-hover:shadow-medium transition-all duration-300">
-                      <div className="h-48 bg-linear-to-br from-primary-300 to-primary-500 rounded-xl mb-4 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      <div className="h-48 bg-gradient-to-br from-primary-300 to-primary-500 rounded-xl mb-4 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <span className="text-5xl">🍽️</span>
                       </div>
                       <h2 className="text-2xl font-semibold mb-2 text-neutral-800 group-hover:text-primary-600 transition-colors">
