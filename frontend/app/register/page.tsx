@@ -6,7 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { Mail, Lock, UserPlus } from 'lucide-react';
+import { Mail, Lock, UserPlus, User } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -14,7 +14,7 @@ import { Card } from '@/components/ui/Card';
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState<'admin' | 'manager' | 'member'>('member');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -23,21 +23,10 @@ export default function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
-      return;
-    }
-
     setLoading(true);
 
     try {
-      await register(email, password, 'member');
+      await register(email, password, role);
       toast.success('Registration successful!');
       router.push('/dashboard');
     } catch (err: any) {
@@ -50,7 +39,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-white to-primary-50/30 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-neutral-50 via-white to-primary-50/30 p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -67,7 +56,7 @@ export default function RegisterPage() {
             >
               Create Account
             </motion.h2>
-            <p className="text-neutral-600">Sign up to get started</p>
+            <p className="text-neutral-600">Join Dishly today</p>
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
@@ -118,15 +107,23 @@ export default function RegisterPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <Input
-                label="Confirm Password"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                icon={<Lock className="h-5 w-5" />}
-                required
-                placeholder="••••••••"
-              />
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
+                Role
+              </label>
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
+                  <User className="h-5 w-5" />
+                </div>
+                <select
+                  value={role}
+                  onChange={(e) => setRole(e.target.value as any)}
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-neutral-200 hover:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all bg-white"
+                >
+                  <option value="member">Member</option>
+                  <option value="manager">Manager</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
             </motion.div>
 
             <motion.div
@@ -141,7 +138,7 @@ export default function RegisterPage() {
                 size="lg"
                 icon={<UserPlus className="h-5 w-5" />}
               >
-                {loading ? 'Creating account...' : 'Create Account'}
+                {loading ? 'Creating account...' : 'Register'}
               </Button>
             </motion.div>
 
@@ -150,7 +147,7 @@ export default function RegisterPage() {
                 href="/login"
                 className="text-primary-600 hover:text-primary-700 font-medium transition-colors text-sm"
               >
-                Already have an account? <span className="underline">Login</span>
+                Already have an account? <span className="underline">Sign in</span>
               </Link>
             </div>
           </form>
