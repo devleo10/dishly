@@ -16,6 +16,7 @@ export function Navbar() {
 
   const handleLogout = () => {
     logout();
+    setMobileMenuOpen(false);
     router.push('/');
   };
 
