@@ -66,7 +66,7 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
       const userId = user.userId as number;
 
       // If setting as default, unset other defaults
-      if (isDefault) {
+      if (isDefault === true) {
         await db
           .update(paymentMethods)
           .set({ isDefault: 0 })
@@ -81,7 +81,7 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
           cardNumber: cardNumber || null,
           expiryDate: expiryDate || null,
           cardholderName: cardholderName || null,
-          isDefault: isDefault ? 1 : 0,
+          isDefault: isDefault === true ? 1 : 0,
         })
         .returning();
 
@@ -128,7 +128,7 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
       }>;
 
       // If setting as default, unset other defaults
-      if (updateData.isDefault) {
+      if (updateData.isDefault === true) {
         await db
           .update(paymentMethods)
           .set({ isDefault: 0 })
@@ -140,7 +140,7 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
       if (updateData.cardNumber !== undefined) updateValues.cardNumber = updateData.cardNumber;
       if (updateData.expiryDate !== undefined) updateValues.expiryDate = updateData.expiryDate;
       if (updateData.cardholderName !== undefined) updateValues.cardholderName = updateData.cardholderName;
-      if (updateData.isDefault !== undefined) updateValues.isDefault = updateData.isDefault ? 1 : 0;
+      if (updateData.isDefault !== undefined) updateValues.isDefault = updateData.isDefault === true ? 1 : 0;
 
       const [updatedMethod] = await db
         .update(paymentMethods)
