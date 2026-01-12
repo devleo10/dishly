@@ -154,12 +154,6 @@ export const ordersPlugin = new Elysia({ prefix: '/orders' })
       const orderId = parseInt(id);
       const user = await getCurrentUser();
       const userId = user.userId as number;
-      const userRole = user.role as string;
-
-      // Check role (Admin or Manager only)
-      if (userRole !== 'admin' && userRole !== 'manager') {
-        throw error(403, { message: 'Only Admin and Manager can cancel orders' });
-      }
 
       if (isNaN(orderId)) {
         throw error(400, { message: 'Invalid order ID' });
