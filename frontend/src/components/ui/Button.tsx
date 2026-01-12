@@ -40,7 +40,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={ref}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
-        style={variantStyles[variant]}
+        style={{ ...variantStyles[variant], ...(props.style || {}) }}
         disabled={disabled || isLoading}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
