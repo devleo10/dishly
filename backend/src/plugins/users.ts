@@ -1,10 +1,42 @@
 import { Elysia } from 'elysia';
+import { jwt } from '@elysiajs/jwt';
 import { db } from '../db';
 import { users } from '../db/schema';
 import { eq } from 'drizzle-orm';
 
 export const usersPlugin = new Elysia({ prefix: '/users' })
-  .get('/', async () => {
+  .use(
+    jwt({
+      name: 'jwt',
+      secret: process.env.JWT_SECRET || 'your-secret-key',
+    })
+  )
+  .derive({ as: 'scoped' }, ({ jwt, headers, error }) => {
+    return {
+      async getCurrentUser() {
+        const token = headers.authorization?.replace('Bearer ', '');
+
+        if (!token) {
+          throw error(401, { message: 'Unauthorized' });
+        }
+
+        const payload = await jwt.verify(token);
+
+        if (!payload) {
+          throw error(401, { message: 'Invalid token' });
+        }
+
+        return payload;
+      },
+    };
+  })
+  .get('/', async ({ getCurrentUser, error }) => {
+    const user = await getCurrentUser();
+
+    if (user.role !== 'admin') {
+      throw error(403, { message: 'Only Admin can list all users' });
+    }
+
     const allUsers = await db
       .select({
         id: users.id,
@@ -18,7 +50,8 @@ export const usersPlugin = new Elysia({ prefix: '/users' })
       users: allUsers,
     };
   })
-  .get('/:id', async ({ params, error }) => {
+  .get('/:id', async ({ params, getCurrentUser, error }) => {
+    const user = await getCurrentUser();
     const { id } = params as { id: string };
     const userId = parseInt(id);
 
@@ -26,7 +59,12 @@ export const usersPlugin = new Elysia({ prefix: '/users' })
       throw error(400, { message: 'Invalid user ID' });
     }
 
-    const [user] = await db
+    // Users can only view their own profile unless they are admin
+    if (user.role !== 'admin' && user.userId !== userId) {
+      throw error(403, { message: 'Forbidden' });
+    }
+
+    const [foundUser] = await db
       .select({
         id: users.id,
         email: users.email,
@@ -37,15 +75,11 @@ export const usersPlugin = new Elysia({ prefix: '/users' })
       .where(eq(users.id, userId))
       .limit(1);
 
-    if (!user) {
+    if (!foundUser) {
       throw error(404, { message: 'User not found' });
     }
 
     return {
-      user,
+      user: foundUser,
     };
   });
-
-
-
-
