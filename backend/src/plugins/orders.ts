@@ -3,7 +3,6 @@ import { db } from '../db';
 import { orders, orderItems, menuItems } from '../db/schema';
 import { eq, and } from 'drizzle-orm';
 import { jwt } from '@elysiajs/jwt';
-import { roleMiddleware } from './role-middleware';
 
 export const ordersPlugin = new Elysia({ prefix: '/orders' })
   .use(
