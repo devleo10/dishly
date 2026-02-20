@@ -47,12 +47,6 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
     '/',
     async ({ body, getCurrentUser, error }) => {
       const user = await getCurrentUser();
-      const userRole = user.role as string;
-
-      // Admin only
-      if (userRole !== 'admin') {
-        throw error(403, { message: 'Only Admin can add payment methods' });
-      }
 
       const { type, cardNumber, expiryDate, cardholderName, isDefault } = body as {
         type: 'card' | 'wallet';
@@ -106,12 +100,6 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
       const { id } = params as { id: string };
       const methodId = parseInt(id);
       const user = await getCurrentUser();
-      const userRole = user.role as string;
-
-      // Admin only
-      if (userRole !== 'admin') {
-        throw error(403, { message: 'Only Admin can update payment methods' });
-      }
 
       if (isNaN(methodId)) {
         throw error(400, { message: 'Invalid payment method ID' });
@@ -173,12 +161,6 @@ export const paymentMethodsPlugin = new Elysia({ prefix: '/payment-methods' })
       const { id } = params as { id: string };
       const methodId = parseInt(id);
       const user = await getCurrentUser();
-      const userRole = user.role as string;
-
-      // Admin only
-      if (userRole !== 'admin') {
-        throw error(403, { message: 'Only Admin can delete payment methods' });
-      }
 
       if (isNaN(methodId)) {
         throw error(400, { message: 'Invalid payment method ID' });

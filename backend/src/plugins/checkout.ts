@@ -34,12 +34,6 @@ export const checkoutPlugin = new Elysia({ prefix: '/checkout' })
     '/',
     async ({ body, getCurrentUser, error }) => {
       const user = await getCurrentUser();
-      const userRole = user.role as string;
-
-      // Admin and Manager only
-      if (userRole !== 'admin' && userRole !== 'manager') {
-        throw error(403, { message: 'Only Admin and Manager can checkout' });
-      }
 
       const { orderId, paymentMethodId } = body as {
         orderId: number;
@@ -106,6 +100,7 @@ export const checkoutPlugin = new Elysia({ prefix: '/checkout' })
       },
     }
   );
+
 
 
 
