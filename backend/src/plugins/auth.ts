@@ -14,11 +14,11 @@ export const authPlugin = new Elysia()
     })
   )
   .post('/auth/register', async ({ body, jwt, error }) => {
-    const { email, password, role = 'member' } = body as {
+    const { email, password } = body as {
       email: string;
       password: string;
-      role?: 'admin' | 'manager' | 'member';
     };
+    const role = 'member';
 
     if (!email || !password) {
       throw error(400, { message: 'Email and password are required' });
@@ -44,7 +44,7 @@ export const authPlugin = new Elysia()
       .values({
         email,
         passwordHash,
-        role: role as 'admin' | 'manager' | 'member',
+        role,
       })
       .returning();
 
@@ -152,6 +152,7 @@ export const authPlugin = new Elysia()
       },
     }
   );
+
 
 
 
