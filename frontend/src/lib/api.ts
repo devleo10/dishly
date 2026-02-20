@@ -20,5 +20,16 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Handle 401 responses by clearing stale auth state
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 && typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default api;
 
